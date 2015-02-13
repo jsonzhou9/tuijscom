@@ -1,0 +1,10 @@
+<!--样式-->
+	<link href="<%= locals.cdn %>css/all.css?ver=<%= resVersion %>" rel="stylesheet" type="text/css" />
+    <%if(locals.routePath && locals.routePath=="/publish"){%>
+    <link href="<%= locals.cdn %>css/pagedown.css" rel="stylesheet" type="text/css" />
+    <link href="<%= locals.cdn %>uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+    <%}%>
+    <%if(locals.routePath && locals.routePath=="/lib/:id"){%>
+    <link href="<%= locals.cdn %>syntaxhighlighter/Styles/shCore.css" rel="stylesheet" type="text/css" />
+    <link href="<%= locals.cdn %>syntaxhighlighter/Styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+    <%}%>

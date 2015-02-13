@@ -1,0 +1,126 @@
+<%
+var libTitle = lib.libname ? lib.title+'：'+lib.libname :lib.title;
+%>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="<%=description%>">
+    <meta name="kewords" content="<%if(lib.libname){%><%=lib.libname%>,<%}%><% for(var i=0;i<tag.length;i++){ %><%= tag[i].name %>,<% } %><%=kewords%>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title><%=libTitle%> - <%=website_name%> - <%=website_slogan%></title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <%- include style_list.html %>
+    <!--[if lt IE 9]>
+    <script src="<%= locals.cdn %>js/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="wrap">
+	<%- include nav.html %>
+    
+    <!--主内容区-->
+    <div class="content clearfix" id="content">
+    	<!--中间-->
+   	  	<div class="container">
+        	<% if (locals.noteMsg) { %>
+            <div id="noteMsg" class="nNote <%=locals.noteMsgType%>">
+                <p><%=locals.noteMsg%></p>
+            </div>
+            <% }else{ %>
+            <div id="noteMsg" class="nNote" style="display:none;">
+                <p></p>
+            </div>
+            <% } %>
+            
+        	<div class="article_container">
+            	<h1><% if(!lib.isok){ %><span class="red">[待审核]</span> <% } %><%=libTitle%></h1>
+                
+                <div class="article_meta">
+                    <div class="article-sinfo">
+                        <span class="muted"><i class="icon-user"></i> <% if(user.is_admin){ %>Admin<%}else{%><a href="/user/<%=user.username%>"><%=user.username%></a><%}%></span>
+                        <span class="muted"><i class="icon-time"></i> <%= lib.pubDate %></span>
+                        <span class="muted"><i class="icon-eye-open"></i> <%= lib.visit_count %>浏览</span>
+                        <span class="muted"><i class="icon-list-alt"></i> <a href="/category/<%= category.name_en %>"><%= category.name_cn %></a></span>
+                    </div>
+                    
+                    <button type="button" class="flatbtn flatbtn-primary" id="fav_btn" data-id="<%= lib.id %>">我要收藏</button>
+                    <button type="button" class="flatbtn flatbtn-success" id="use_btn" data-id="<%= lib.id %>">已使用 +<%= lib.fav_count %></button>
+                </div>
+                
+                <% if(is_admin){ %>
+                <div class="admin-widget">
+                	<% if(!lib.isok){ %>
+                	<button data-id="<%= lib.id %>" class="btn btn-mini btn-success" type="button" id="audit_btn">审核通过</button>
+                    <% }else{ %>
+                    <button data-id="<%= lib.id %>" class="btn btn-mini btn-warning" type="button" id="audit_off_btn">取消审核</button>
+                    <% } %>
+                	<button class="btn btn-mini btn-primary" type="button" onClick="location.href='/publish?id=<%= lib.id %>';">修改</button>
+                    <button data-id="<%= lib.id %>" class="btn btn-mini btn-danger" type="button" id="del_btn">删除</button>
+                </div>
+                <% } %>
+                
+                <div class="article_content" id="article_content">
+                	<%- lib.contentHtml %>
+                </div>
+                
+                <% if(lib.libname && (lib.homepage || lib.doc) ){ %>
+                <div class="liburl-widget">
+                	<% if(lib.homepage){ %>
+                	<a href="/libgo?type=homepage&id=<%= lib.id %>" target="_blank" class="flatbtn flatbtn-inverse" id="fav_btn"><%= lib.libname %>的主页</a>
+                    <% } %>
+                    <% if(lib.doc){ %>
+                    <a href="/libgo?type=doc&id=<%= lib.id %>" target="_blank" class="flatbtn flatbtn-inverse" id="fav_btn"><%= lib.libname %>的文档</a>
+                    <% } %>
+                    <span class="liburl_tips">该链接将前往其它网站</span>
+                </div>
+                <% } %>
+                
+                <% if(lib.github){ %>
+                <div class="github-widget" data-repo="<%= lib.github %>"></div>
+                <% } %>
+                
+                <div class="toolbar">
+                	<% if(tag.length>0){ %>
+                	<div class="widget_tags">继续浏览有关
+                    <% for(var i=0;i<tag.length;i++){ %> 
+                    <a href="/tag/<%= encodeURIComponent(tag[i].name) %>"><%= tag[i].name %></a>
+                    <% } %>
+                     的文章
+                    </div>
+                    <% } %>
+                    
+                	<!-- JiaThis Button BEGIN -->
+                    <div class="jiathis_style_24x24 clearfix">
+                    	<span style="float:left;">分享此文到：</span>
+                        <a class="jiathis_button_qzone"></a>
+                        <a class="jiathis_button_tsina"></a>
+                        <a class="jiathis_button_tqq"></a>
+                        <a class="jiathis_button_weixin"></a>
+                        <a class="jiathis_button_renren"></a>
+                        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                        <a class="jiathis_counter_style"></a>
+                    </div>
+                    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+                    <!-- JiaThis Button END -->
+                </div>
+                
+                <a name="comment"></a>
+                <div class="comment-widget">
+                <!-- UY BEGIN -->
+                <div id="uyan_frame"></div>
+                <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1879675"></script>
+                <!-- UY END -->
+                </div>
+            </div>
+        </div><!--container end-->
+        
+        <%- include sidebar.html %>
+        
+        <%- include footer.html %>
+    </div><!--content end--> 
+</div>
+<%- include js_list.html %>
+</body>
+</html>

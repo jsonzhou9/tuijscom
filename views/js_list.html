@@ -1,0 +1,29 @@
+<!--所有脚本-->
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.0/jquery.min.js"></script>
+<script type="text/javascript" src="<%= locals.cdn %>js/ui.mini.js?ver=<%= resVersion %>"></script>
+<script type="text/javascript">
+window.$PATH = '<%= locals.routePath %>';
+</script>
+<% 
+if(locals.routePath){
+	if(locals.routePath=="/register" 
+    || locals.routePath=="/login"
+    || locals.routePath=="/column"
+    || locals.routePath=="/publish"){ 
+%><script type="text/javascript" src="<%= locals.cdn %>js/validator-min.js"></script><% };if(locals.routePath=="/login" || locals.routePath=="/register"){ %>
+<script type="text/javascript" src="<%= locals.cdn %>js/md5.min.js"></script><% };if(locals.routePath=="/lib/:id"){ %>
+<script type="text/javascript" src="<%= locals.cdn %>syntaxhighlighter/Scripts/shCore.js"></script>
+<script type="text/javascript" src="<%= locals.cdn %>syntaxhighlighter/Scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="<%= locals.cdn %>syntaxhighlighter/Scripts/shBrushCss.js"></script>
+<script type="text/javascript" src="<%= locals.cdn %>js/jquery.githubRepoWidget.min.js"></script><% };if(locals.routePath=="/publish"){ %>
+<script type="text/javascript" src="<%= locals.cdn %>js/pagedown.all.js"></script>
+<script type="text/javascript" src="<%= locals.cdn %>uploadify/jquery.uploadify-min.js"></script><% }} %>
+<!--[if lt IE 8]>
+<script src="/js/noIE67.js" type="text/javascript"></script>
+<![endif]-->
+<div style=" width:1px; height:1px; overflow:hidden; position:relative; top:-1px; left:0px;">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3422756863814e3a41840696a677296e' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>

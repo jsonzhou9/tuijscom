@@ -1,0 +1,21 @@
+{
+  "name": "tuijs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+	"ejs": "0.8.4",
+	"mongoose": "3.8.4",
+	"pagedown": "1.1.0",
+	"querystring": "0.2.0",
+	"session-mongoose" : "0.4.1",
+	"validator": "2.0.0",
+	"xss": "0.0.9",
+	"eventproxy": "0.2.6",
+	"debug": "0.7.4",
+	"qiniu": "6.1.1"
+  }
+}

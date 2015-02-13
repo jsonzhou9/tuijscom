@@ -1,0 +1,73 @@
+<!--右侧widget列表-->
+        <div class="sidebar">
+        	<div class="libnum-box">
+            	推JS已收录<span class="libnum-num">----</span>个WEB前端类库框架！
+            </div>
+            
+        	<div class="user-box">
+            	<% if (locals.current_user && locals.current_user.username) { %>
+                <div class="user-login">
+                	<p class="user-title">欢迎您：<a href="/user/<%= locals.current_user.username %>"><%= locals.current_user.username %></a><span class="user-coin"><%= locals.current_user.score %> 积分</span> <a href="/loginout">[退出]</a></p>
+                    <ul class="clearfix">
+                    	<li><a href="/publish"><i class="icon-edit"></i> 我要推荐</a></li>
+                        <li><a href="/my_publish"><i class="icon-share"></i> 我的推荐</a></li>
+                        <li><a href="/favor"><i class="icon-heart"></i> 类库收藏</a></li>
+                        <li><a href="/password"><i class="icon-user"></i> 修改密码</a></li>
+                        <% if(locals.current_user.is_admin){ %>
+                        <li><a href="/column"><i class="icon-wrench"></i> 分类管理</a></li>
+                        <li><a href="/admin_user"><i class="icon-wrench"></i> 用户管理</a></li>
+                        <li><a href="/admin_lib"><i class="icon-wrench"></i> 类库审核</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+                <% }else{ %>
+            	<div class="user-noreg">
+                	<p>
+                    期待您加入：
+                	<button type="button" class="btn btn-primary" onclick="location.href='/register'"><i class="icon-white icon-user"></i>注册</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='/login'"><i class="icon-white icon-user"></i>登录</button>
+                    </p>
+                    <p class="fast-login">
+                    或使用社交帐户快速登录:[暂未开放]
+                    </p>
+                </div>
+				<% } %>
+            </div>
+            
+            <div class="search-box">
+            	<form id="searchform" action="/" method="get">
+                	<input type="text" placeholder="请输入关键词搜索..." id="q" name="q" class="search-inputbox">
+                    <button class="icon-search" type="submit"></button>
+                </form>
+            </div>
+            
+            <div class="widget">
+            	<h3>最热内容<a href="/?sortby=view" class="widget-more">更多</a></h3>
+                <div class="widget-wrapper" id="top_view">
+                	<div class="loading clearfix">
+                    	<img src="<%= locals.cdn %>images/loading.gif" alt="内容加载中..." />
+                        <span>正在加载内容...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="widget">
+            	<h3>使用最多<a href="/?sortby=use" class="widget-more">更多</a></h3>
+                <div class="widget-wrapper" id="top_use">
+                	<div class="loading clearfix">
+                    	<img src="<%= locals.cdn %>images/loading.gif" alt="内容加载中..." />
+                        <span>正在加载内容...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="widget">
+            	<h3>标签云<a href="/tag" class="widget-more">更多</a></h3>
+                <div class="widget_tags" id="top_tag">
+                	<div class="loading clearfix">
+                    	<img src="<%= locals.cdn %>images/loading.gif" alt="内容加载中..." />
+                        <span>正在加载内容...</span>
+                    </div>
+                </div>
+            </div>
+        </div><!--sidebar end-->

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="<%=description%>">
+    <meta name="kewords" content="<%=kewords%>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>所有标签 - <%=website_name%> - <%=website_slogan%></title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <%- include style_list.html %>
+    <!--[if lt IE 9]>
+    <script src="<%= locals.cdn %>js/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="wrap">
+	<%- include nav.html %>
+    
+    <!--主内容区-->
+    <div class="content clearfix" id="content">
+    	<!--中间-->
+   	  	<div class="container">
+        	<%- include nav_top.html %>
+        	<div class="article-list">
+            	<h2 class="title-center">标签列表</h2>
+                <div class="tag-list">
+                	<div class="widget_tags">
+                    <% for(var i=0;i<tag.length;i++){ %> 
+                    <a href="/tag/<%= encodeURIComponent(tag[i].name) %>"><%= tag[i].name %> (<%= tag[i].topic_count %>)</a>
+                    <% } %>
+                    </div>
+                </div>
+            </div>
+        </div><!--container end-->
+        
+        <%- include sidebar.html %>
+        
+        <%- include footer.html %>
+    </div><!--content end--> 
+</div>
+<%- include js_list.html %>
+</body>
+</html>
